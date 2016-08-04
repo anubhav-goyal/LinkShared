@@ -126,7 +126,6 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fintech.share
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/user/index'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fintech.sharelink.credential.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.fintech.sharelink.credential.Role'
-grails.plugin.springsecurity.apf.filterProcessesUrl = '/j_spring_security_check'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
@@ -136,6 +135,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
-    '/login/auth':['permitAll']
+    '/login/auth':      ['permitAll']
 ]
 
