@@ -21,8 +21,8 @@ environments {
             dialect = 'org.hibernate.dialect.MySQL5InnoDBDialect'
             username = "root"
             password = "nextdefault"
-            logSql = true
-            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+//            logSql = true
+            dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:mysql://localhost:3306/linksharing?autoreconnect=true"
         }
     }

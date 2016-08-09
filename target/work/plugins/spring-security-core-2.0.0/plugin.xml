@@ -7,8 +7,8 @@
   <type>SpringSecurityCoreGrailsPlugin</type>
   <resources>
     <resource>DefaultSecurityConfig</resource>
-    <resource>grails.plugin.com.fintech.sharelink.credential.LoginController</resource>
-    <resource>grails.plugin.com.fintech.sharelink.credential.LogoutController</resource>
+    <resource>grails.plugin.springsecurity.LoginController</resource>
+    <resource>grails.plugin.springsecurity.LogoutController</resource>
     <resource>grails.plugin.springsecurity.SpringSecurityService</resource>
     <resource>grails.plugin.springsecurity.SecurityTagLib</resource>
   </resources>

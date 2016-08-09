@@ -1,5 +1,7 @@
 package com.fintech.sharelink.credential
 
+import com.fintech.sharelink.Subscription
+import com.fintech.sharelink.Topic
 import commandobjects.register.UserCO
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
@@ -17,13 +19,16 @@ class User implements Serializable {
 	String password
 
 	String firstName
-	String lastName;
-	String email;
-	Boolean admin;
-	Boolean active;
+	String lastName
+	String email
+	//String photo
+	Boolean admin
+	Boolean active
     Date dateCreated
 	Date lastUpdated
 
+	static hasMany = [topics : Topic,
+					  subsriptions : Subscription]
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -41,8 +46,8 @@ class User implements Serializable {
 		firstName = userCO.firstName
 		lastName = userCO.lastName
 		email = userCO.email
-		active = false
-		userCO.active=false
+		active = true
+		userCO.active=true
 		if(saveAdmin){
 			admin = true;
 		}else{
@@ -78,6 +83,7 @@ class User implements Serializable {
 		email blank: false
 		firstName blank: false
 		lastName blank: false
+		topics nullable: true
 	}
 
 	static mapping = {

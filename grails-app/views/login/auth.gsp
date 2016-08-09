@@ -7,7 +7,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 
-<head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +33,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${resource(dir: "ico",file: "apple-touch-icon-72-precomposed.png")}"/>
     <link rel="apple-touch-icon-precomposed"  href="${resource(dir: "ico",file: "apple-touch-icon-57-precomposed.png")}"/>
 
+%{--<g:javascript src="jquery-1.11.1.min.js"/>--}%
     <g:javascript>
         $(document).ready(function(){
             $('.registration-form input[type="text"], .registration-form input[type="password"], .registration-form textarea').on('focus', function() {
@@ -55,6 +55,8 @@
             });
         });
     </g:javascript>
+
+    <r:layoutResources/>
 </head>
 
 <body>
@@ -148,28 +150,35 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <g:form role="form" controller="user" action="register" method="post" class="registration-form">
-                                <div class="form-group">
+                            <g:form role="form" controller="user" action="register" method="post" enctype="multipart/form-data" class="registration-form">
+                                <div class="form-group text-danger">
                                     <g:if test="${flash.error}">
                                         <g:message code="${flash.error}"/>
                                     </g:if>
+                                </div>
+                                <div class="form-group text-success">
+                                    <g:if test="${flash.success}">
+                                        <g:message code="${flash.success}"/>
+                                    </g:if>
+                                </div>
+                                <div class="form-group">
                                     <label class="sr-only" for="form-first-name">First name</label>
-                                    <g:textField name="firstName" placeholder="First name..." class="form-first-name form-control" id="form-first-name"/>
+                                    <g:textField name="firstName" placeholder="First name..." value="${errorinfo!=null?errorinfo.firstName:""}" class="form-first-name form-control" id="form-first-name"/>
                                     %{--<input type="text" name="firstname" placeholder="First name..." class="form-first-name form-control" id="form-first-name">--}%
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Last name</label>
-                                    <g:textField name="lastName" placeholder="last name..." class="form-last-name form-control" id="form-last-name"/>
+                                    <g:textField name="lastName" placeholder="Last Name..." value="${errorinfo!=null?errorinfo.lastName:""}" class="form-last-name form-control" id="form-last-name"/>
                                     %{--<input type="text" name="lastname" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">--}%
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Email</label>
-                                    <g:textField name="email" placeholder="Email..." class="form-email form-control" id="form-email"/>
+                                    <g:textField name="email" placeholder="Email..."  value="${errorinfo!=null?errorinfo.email:""}" class="form-email form-control" id="form-email"/>
                                     %{--<input type="text" name="email" placeholder="Email..." class="form-email form-control" id="form-email">--}%
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">User Name</label>
-                                    <g:textField name="username" placeholder="User name..." class="form-user-name form-control" id="form-user-name"/>
+                                    <g:textField name="username" placeholder="User name..." value="${errorinfo!=null?errorinfo.username:""}" class="form-user-name form-control" id="form-user-name"/>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Password</label>
@@ -180,6 +189,9 @@
                                     <g:passwordField name="confirmPassword" placeholder="Confirm Password..." class="form-password form-control" id="form-confirm-password-sign"/>
                                 </div>
                                 %{--<div class="form-group">--}%
+                                    %{--<label class="sr-only" for="form-uploadphoto">Upload Photo</label>--}%
+                                    %{--<input type="file" name="uploadPhoto" placeholder="Choose File..." class="form-password form-control" id="form-uploadphoto"/>--}%
+                                %{--</div>                        --}%%{--<div class="form-group">--}%
                                     %{--<label class="sr-only" for="form-about-yourself">About yourself</label>--}%
                                     %{--<textarea name="form-about-yourself" placeholder="About yourself..."--}%
                                               %{--class="form-about-yourself form-control" id="form-about-yourself"></textarea>--}%
@@ -236,6 +248,7 @@
 <!--[if lt IE 10]>
 
         <![endif]-->
+<r:layoutResources/>
 
 </body>
 

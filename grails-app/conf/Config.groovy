@@ -129,12 +129,16 @@ grails.plugin.springsecurity.authority.className = 'com.fintech.sharelink.creden
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
-	'/index.gsp':       ['permitAll'],
+	'/linkresource.gsp':       ['permitAll'],
+    '/login/auth':      ['permitAll'],
 	'/assets/**':       ['permitAll'],
 	'/**/js/**':        ['permitAll'],
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
-    '/login/auth':      ['permitAll']
+    '/**/ico/**':    ['permitAll'],
+    '/**/img/**':    ['permitAll'],
+    '/**/bootstrap/**':    ['permitAll'],
+    '/**/font-awesome/**':    ['permitAll']
 ]
 

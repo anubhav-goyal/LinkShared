@@ -2,6 +2,7 @@ package commandobjects.register
 
 import com.fintech.sharelink.credential.User
 import grails.validation.Validateable
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 
 /**
@@ -16,6 +17,8 @@ class UserCO{
     String lastName
     String email
     String confirmPassword
+//    CommonsMultipartFile uploadPhoto
+//    String photo
     Boolean admin
     Boolean active
     Date dateCreated
@@ -28,7 +31,6 @@ class UserCO{
             {
                 return "User Already Exists"
             }
-            println("UserCo username after if")
         }
         password blank: false, validator: {val,obj->
             if (!val.equals(obj.confirmPassword))
@@ -37,8 +39,11 @@ class UserCO{
             }
         }
         confirmPassword blank: false
-        email blank: false
+        email blank: false, email: true
         firstName blank: false
         lastName blank: false
+//        uploadPhoto nullable: true,blank: true
+//        photo nullable: true,blank: true
+
     }
 }
