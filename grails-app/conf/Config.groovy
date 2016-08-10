@@ -123,7 +123,7 @@ log4j = {
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fintech.sharelink.credential.User'
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/user/index'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/user/dashBoard'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fintech.sharelink.credential.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.fintech.sharelink.credential.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [

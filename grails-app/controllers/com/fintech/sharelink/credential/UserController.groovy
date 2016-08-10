@@ -1,5 +1,6 @@
 package com.fintech.sharelink.credential
 
+import com.fintech.sharelink.LinkResourceService
 import com.fintech.sharelink.Subscription
 import com.fintech.sharelink.Topic
 import com.fintech.sharelink.datavalidation.UserLoginService
@@ -11,21 +12,28 @@ import commandobjects.register.UserCO
 class UserController {
     def userLoginService
     def userTopicService
+    def linkResourceService
     def springSecurityService
      static allowedMethods = [register: "POST"]//,index: "POST"]
     @Secured(["ROLE_ADMIN", "ROLE_USER"])
     def index() {
+
+    }
+
+    def dashBoard(){
         if (SpringSecurityUtils.ifAllGranted("ROLE_ADMIN"))
             render "ADMIN ${SpringSecurityUtils.getPrincipalAuthorities()}"
         else
         {
             def topic = userTopicService.listTopic()
-            User user = springSecurityService.currentUser as User
-            Subscription subscription = Subscription.findByUser(user)
-            def subscriptionCount = Subscription.countByUser(user)
-            def topicCount = Topic.countByUser(user)
-            render view: "/topic/create",model: [topics: topic, subscriptionCount: subscriptionCount,
-                                                 topicCount: topicCount,subscrip: subscription?subscription.list(max: 5):null]
+            User userCurrent = springSecurityService.currentUser as User
+            Subscription subscription = Subscription.findByUser(userCurrent)
+            List<Topic> recievedTopics =  linkResourceService.getRenderTopics()
+            def subscriptionCount = Subscription.countByUser(userCurrent)
+            def topicCount = Topic.countByUser(userCurrent)
+            render view: "/user/dashboard",model: [topics: topic, subscriptionCount: subscriptionCount,
+                                                 topicCount: topicCount,subscrip: subscription?subscription.list(max: 5):null,
+                                                 renderTopics: recievedTopics,userActive:userCurrent]
         }
 
     }

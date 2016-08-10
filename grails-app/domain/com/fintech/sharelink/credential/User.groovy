@@ -1,5 +1,8 @@
 package com.fintech.sharelink.credential
 
+import com.fintech.sharelink.ReadingItem
+import com.fintech.sharelink.Resource
+import com.fintech.sharelink.ResourceRating
 import com.fintech.sharelink.Subscription
 import com.fintech.sharelink.Topic
 import commandobjects.register.UserCO
@@ -28,7 +31,10 @@ class User implements Serializable {
 	Date lastUpdated
 
 	static hasMany = [topics : Topic,
-					  subsriptions : Subscription]
+					  subsriptions : Subscription,
+	 				  resources : Resource,
+					  readingItems : ReadingItem,
+	                  resourceRating: ResourceRating]
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
