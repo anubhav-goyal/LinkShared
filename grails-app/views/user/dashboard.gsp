@@ -25,11 +25,12 @@
 
                     <div class="col-sm-6">
                         Subscription<br/>
-                        ${subscriptionCount?subscriptionCount:""}
+                        ${subscriptionCount ? subscriptionCount : ""}
                     </div>
+
                     <div class="col-sm-6 text-right">
                         Topic<br/>
-                        ${topicCount?topicCount:""}
+                        ${topicCount ? topicCount : ""}
                     </div>
                 </div>
             </div>
@@ -39,8 +40,9 @@
                         <div class="col-sm-6 text-left">
                             <h6>Subscriptions</h6>
                         </div>
+
                         <div class="col-sm-6 text-right">
-                            <h6><a href="${g.createLink(controller: "topic",action: "show")}" >View All</a></h6>
+                            <h6><a href="${g.createLink(controller: "topic", action: "show")}">View All</a></h6>
                         </div>
                     </div>
                     <g:each in="${subscrip}" var="subscription">
@@ -49,30 +51,42 @@
                                 <div class="row">
                                     ${subscription.topic.name}
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-4 text-left">
-                                        <a href="${g.createLink(controller: "subscription",action: "deActivate",params: [topic:subscription.topic.id])}">Unsubscribe</a>
+                                        <a href="${g.createLink(controller: "subscription", action: "deActivate", params: [topic: subscription.topic.id])}">Unsubscribe</a>
                                     </div>
+
                                     <div class="col-sm-4">
                                         Subscription<br/>
                                         <sub:totalSubscribe topicObj="${subscription.topic}"/>
                                     </div>
+
                                     <div class="col-sm-4">
                                         Post<br/>
                                         <sub:totalPosts topicObj="${subscription.topic}"/>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <g:select name="seriousness" from="${com.fintech.enums.TopicVisibleEnum.Seriousness}" class="dropdown"
+                                        <g:select name="seriousness"
+                                                  from="${com.fintech.enums.TopicVisibleEnum.Seriousness}"
+                                                  class="dropdown"
                                                   value="${subscription.seriousness}" id="seriousness"/>
                                     </div>
+
                                     <div class="col-sm-3">
-                                        <g:select name="topicVisibility" from="${com.fintech.enums.TopicVisibleEnum.Visiblity}" class="dropdown"
+                                        <g:select name="topicVisibility"
+                                                  from="${com.fintech.enums.TopicVisibleEnum.Visiblity}"
+                                                  class="dropdown"
                                                   value="${subscription.topic.visiblity}" id="topicVisibility"/>
                                     </div>
+
                                     <div class="col-sm-2"></div>
+
                                     <div class="col-sm-2"></div>
+
                                     <div class="col-sm-2"></div>
                                 </div>
                             </div>
@@ -93,21 +107,24 @@
                                     <a href="#">${topics.name}</a>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-4">
                                     <sub:subscribe topicObj="${topics}"/>
                                 </div>
+
                                 <div class="col-md-4">
                                     Subscriptions<br>
                                     <sub:totalSubscribe topicObj="${topics}"/>
                                 </div>
+
                                 <div class="col-md-4">
                                     Posts<br/>
                                     <sub:totalPosts topicObj="${topics}"/>
                                 </div>
                             </div>
                         </div>
-                        <g:if test="${(userActive.admin)||(userActive.username == topics.user.username)}">
+                        <g:if test="${(userActive.admin) || (userActive.username == topics.user.username)}">
                             <div class="panel-body">
 
                             </div>
@@ -123,20 +140,27 @@
                 <div class="panel-heading">
                     <h2>Create Topic</h2>
                 </div>
+
                 <div class="panel-body">
                     <g:form class="form-horizontal" method="post" controller="topic" action="insert">
                         <div class="form-group">
                             <label for="name" class="col-sm-3 control-label">Name</label>
+
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" name="name" id="name" placeholder="name" required>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="name"
+                                       required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="topicVisible" class="col-sm-3 control-label">Visibility</label>
+
                             <div class="col-sm-9">
-                                <g:select name="topicVisible" from="${com.fintech.enums.TopicVisibleEnum.Visiblity}" id="topicVisible"/>
+                                <g:select name="topicVisible" from="${com.fintech.enums.TopicVisibleEnum.Visiblity}"
+                                          id="topicVisible"/>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">Create</button>
@@ -150,6 +174,7 @@
                 <div class="panel-heading">
                     <h5>Link Resource</h5>
                 </div>
+
                 <div class="panel-body">
                     <g:form class="form-horizontal" method="post" controller="linkResource" action="save">
                         <div class="form-group text-center">
@@ -157,20 +182,27 @@
                                 ${flash.message}
                             </g:if>
                         </div>
+
                         <div class="form-group">
                             <label for="Url" class="col-sm-2 control-label">URL</label>
+
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" name="url" id="url" placeholder="url" required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">Description</label>
+
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="description" id="description" placeholder="Description" required></textarea>
+                                <textarea class="form-control" name="description" id="description"
+                                          placeholder="Description" required></textarea>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="topic" class="col-sm-2 control-label">Topic</label>
+
                             <div class="col-sm-10">
                                 <g:select name="topic" from="${topics}" optionKey="id" optionValue="name"/>
                             </div>
@@ -190,27 +222,36 @@
                 <div class="panel-heading">
                     <h5>Document Resource</h5>
                 </div>
+
                 <div class="panel-body">
-                    <g:form class="form-horizontal" method="post" controller="documentResource" action="save" enctype="multipart/form-data">
+                    <g:form class="form-horizontal" method="post" controller="documentResource" action="save"
+                            enctype="multipart/form-data">
                         <div class="form-group text-center">
                             <g:if test="${flash.documentmessage}">
                                 ${flash.documentmessage}
                             </g:if>
                         </div>
+
                         <div class="form-group">
                             <label for="document" class="col-sm-2 control-label">File</label>
+
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" name="document" id="document" required>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="description_doc" class="col-sm-2 control-label">Description</label>
+
                             <div class="col-sm-10">
-                                <textarea class="form-control" name="description" id="description_doc" placeholder="Description" required></textarea>
+                                <textarea class="form-control" name="description" id="description_doc"
+                                          placeholder="Description" required></textarea>
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="topic" class="col-sm-2 control-label">Topic</label>
+
                             <div class="col-sm-10">
                                 <g:select name="topic" from="${topics}" optionKey="id" optionValue="name"/>
                             </div>

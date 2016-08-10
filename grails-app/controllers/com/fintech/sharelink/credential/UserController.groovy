@@ -39,13 +39,11 @@ class UserController {
     }
 
     def register(UserCO userCO) {
-
         User user = userLoginService.registerUser(userCO)
-        println("Hello value : ${user}" )
         if(user == null)
         {
             flash.error = "error.register.unable"
-            render view: "/login/auth",model: [errorinfo:userCO]
+            render view: "/login/auth",model: [errorInfo:userCO]
         }
         else
         {

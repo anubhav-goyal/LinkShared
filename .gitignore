@@ -1,0 +1,10 @@
+.idea
+.classpath
+.project
+LinkShared-grailsPlugins.iml
+application.properties
+LinkShared.iml
+grailsw.bat
+grailsw
+target
+web-app/WEB-INF
